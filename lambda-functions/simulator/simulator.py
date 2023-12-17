@@ -1,12 +1,17 @@
+import os
 import datetime as datetime
 import pika
 import random
 import time
 import json
+from dotenv import load_dotenv
 from multiprocessing import Process
 
+load_dotenv()
+HOST = os.getenv("HOST")
+PORT = os.getenv("PORT")
 
-connection = pika.BlockingConnection(pika.ConnectionParameters(host='host.docker.internal', port=5672))
+connection = pika.BlockingConnection(pika.ConnectionParameters(host=HOST, port=PORT))
 channel = connection.channel()
 
 # Declare the queue 
